@@ -1,0 +1,37 @@
+# @name get-prompts
+GET http://localhost:3333/prompts
+
+###
+
+# @name upload
+POST http://localhost:3333/videos
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="30- Cd Eletro Funk 2023 - G4 Deboxe Goiânia (  Dj Luiz The Best ).mp3"
+Content-Type: audio/mpeg
+
+< ./30- Cd Eletro Funk 2023 - G4 Deboxe Goiânia (  Dj Luiz The Best ).mp3
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# @name create-transcription
+POST http://localhost:3333/videos/f70b7a25-a1fb-4d45-a623-6eeb7ede1c0e/transcription
+Content-Type: application/json
+
+{
+  "prompt": "nós que somos o Talibã, o bagulho é louco mas nós que somos mais louco que o bagulho, tatuagem da aranha"
+}
+
+###
+
+# @name generate-ai-completion
+POST http://localhost:3333/ai/complete
+Content-Type: application/json
+
+{
+  "videoId": "f70b7a25-a1fb-4d45-a623-6eeb7ede1c0e",
+  "temperature": 0.5,
+  "template": "Gere um resumo sucinto da transcrição do vídeo informada a seguir: '''{transcription}''' "
+}
