@@ -8,6 +8,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@ffmpeg/ffmpeg', '@ffmpeg/util']
   },
+  base: "/nlw-ai",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
